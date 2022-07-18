@@ -2,7 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace TheSauce.Items
+namespace TheSauce.Assets.WeaponsMelee
 {
 	public class TutorialSword : ModItem
 	{
