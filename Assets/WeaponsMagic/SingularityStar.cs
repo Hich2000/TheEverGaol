@@ -5,7 +5,7 @@ using TheSauce.Assets.Projectiles;
 
 namespace TheSauce.Assets.WeaponsMagic
 {
-	public class magicweapontemp : ModItem
+	public class SingularityStar : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
