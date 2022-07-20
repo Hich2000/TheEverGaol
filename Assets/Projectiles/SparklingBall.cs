@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
+using System;
 
 namespace TheSauce.Assets.Projectiles
 {
@@ -13,17 +15,17 @@ namespace TheSauce.Assets.Projectiles
 			Projectile.width = 16;
 			Projectile.height = 16;
 			Projectile.friendly = true;
-			Projectile.penetrate = 3;
-			Projectile.timeLeft = 600;
+			Projectile.penetrate = 1;
+			Projectile.timeLeft = 50;
 		}
 
 		public override void AI()
 		{
-			Projectile.velocity.Y += Projectile.ai[0];
-			if (Main.rand.NextBool(3))
-			{
-				Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, ModContent.DustType<Sparkle>(), Projectile.velocity.X * 0.5f, Projectile.velocity.Y * 0.5f);
-			}
+			Projectile.velocity.X = Projectile.velocity.X * 0.95f;
+			Projectile.velocity.Y = Projectile.velocity.Y * 0.95f;
+
+			//Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, ModContent.DustType<Sparkle>(), Projectile.velocity.X * 0.5f, Projectile.velocity.Y * 0.5f);
+
 		}
 
 		public override bool OnTileCollide(Vector2 oldVelocity)
@@ -52,11 +54,7 @@ namespace TheSauce.Assets.Projectiles
 
 		public override void Kill(int timeLeft)
 		{
-			for (int k = 0; k < 5; k++)
-			{
-				Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, ModContent.DustType<Sparkle>(), Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
-			}
-			//Main.PlaySound(SoundID.Item25, Projectile.position);
+			Projectile.NewProjectile(Projectile.InheritSource(Projectile), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<BlackHole>(), 5, 0, Projectile.owner);
 		}
 
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
@@ -64,5 +62,6 @@ namespace TheSauce.Assets.Projectiles
 			Projectile.ai[0] += 0.1f;
 			Projectile.velocity *= 0.75f;
 		}
-	}
+
+    }
 }

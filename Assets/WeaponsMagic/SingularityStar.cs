@@ -16,21 +16,21 @@ namespace TheSauce.Assets.WeaponsMagic
 		public override void SetDefaults()
 		{
 			Item.damage = 200;
-			Item.mana = 6;
+			Item.mana = 70;
 			Item.DamageType = DamageClass.Magic;
-			Item.width = 60;
-			Item.height = 60;
-			Item.useTime = 0;
-			Item.useAnimation = 1;
-			Item.useStyle = ItemUseStyleID.Swing;
+			Item.width = 41;
+			Item.height = 41;
+			Item.useTime = 20;
+			Item.useAnimation = 10;
+			Item.useStyle = ItemUseStyleID.HoldUp;
 			Item.noMelee = true;
-			Item.knockBack = 3;
-			Item.value = 1000;
-			Item.rare = ItemRarityID.Green;
+			Item.knockBack = 1;
+			Item.value = 45000;
+			Item.rare = ItemRarityID.Purple;
 			Item.UseSound = SoundID.Item20;
 			Item.autoReuse = true;
 			Item.shoot = ModContent.ProjectileType<SparklingBall>();
-			Item.shootSpeed = 16f;
+			Item.shootSpeed = 17f;
 		}
 
 		public override void AddRecipes()
@@ -40,5 +40,6 @@ namespace TheSauce.Assets.WeaponsMagic
 			recipe.AddTile(TileID.WorkBenches);
 			recipe.Register();
 		}
+
     }
 }
