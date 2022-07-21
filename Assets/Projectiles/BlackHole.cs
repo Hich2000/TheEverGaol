@@ -34,13 +34,16 @@ namespace TheSauce.Assets.Projectiles
 			if (Projectile.ai[0] == 0)
             {
 				float angle = (float)(2.0 * Math.PI * spawnRandomizer.NextDouble());
+				float angleCos = (float)Math.Cos(angle);
+				float angleSin = (float)Math.Sin(angle);
 
 				Vector2 spawnPosition = Projectile.Center;
+				Vector2 starMovement = new Vector2(-angleCos * 2, -angleSin * 2);
 
-				spawnPosition.X = (float)(spawnPosition.X + (Math.Cos(angle) * radius));
-				spawnPosition.Y = (float)(spawnPosition.Y + (Math.Sin(angle) * radius));
+				spawnPosition.X = (float)(spawnPosition.X + (angleCos * radius));
+				spawnPosition.Y = (float)(spawnPosition.Y + (angleSin * radius));
 
-				Projectile.NewProjectile(Projectile.InheritSource(Projectile), spawnPosition, Vector2.Zero, ModContent.ProjectileType<BlackHoleStar>(), 5, 0, Projectile.owner);
+				Projectile.NewProjectile(Projectile.InheritSource(Projectile), spawnPosition, starMovement, ModContent.ProjectileType<BlackHoleStar>(), 5, 0, Projectile.owner, Projectile.Center.X, Projectile.Center.Y);
 			}
         }
 

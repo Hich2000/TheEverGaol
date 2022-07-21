@@ -11,6 +11,8 @@ namespace TheSauce.Assets.Projectiles
 	internal class BlackHoleStar : ModProjectile
 	{
 
+		public int circleSpeed = 1;
+
 		public override void SetDefaults()
 		{
 			Projectile.width = 22;
@@ -20,5 +22,19 @@ namespace TheSauce.Assets.Projectiles
 			Projectile.timeLeft = 600;
 		}
 
-	}
+        public override void AI()
+        {
+			Vector2 starCenter = Projectile.Center;
+
+
+			bool xInRange = (starCenter.X <= Projectile.ai[0] + 20) && (starCenter.X >= Projectile.ai[0] - 20);
+			bool yInRange = (starCenter.Y <= Projectile.ai[1] + 20) && (starCenter.Y >= Projectile.ai[1] - 20);
+
+			if (xInRange && yInRange)
+            {
+				Projectile.Kill();
+            }
+        }
+
+    }
 }
