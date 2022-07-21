@@ -4,11 +4,15 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
+using System;
 
 namespace TheSauce.Assets.Projectiles
 {
     internal class BlackHole : ModProjectile
     {
+
+		public static int maxInstances = 1;
+		public static BlackHole[] blackHoleInstances = new BlackHole[maxInstances];
 
 		public override void SetDefaults()
 		{
@@ -23,7 +27,15 @@ namespace TheSauce.Assets.Projectiles
         {
             base.OnSpawn(source);
 			//todo check for instance of BlackHole and kill it.
-			var instance = "";
+			if (blackHoleInstances[0] != null)
+            {
+				blackHoleInstances[0].Projectile.Kill();
+				blackHoleInstances[0] = this;
+				//Projectile.Kill();
+			} else
+            {
+                blackHoleInstances[0] = this;
+            }
         }
 
     }
