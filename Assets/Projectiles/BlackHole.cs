@@ -18,8 +18,6 @@ namespace TheSauce.Assets.Projectiles
 		public static BlackHole currentInstance = null;
 		public Random spawnRandomizer = new Random();
 
-		public bool test = true;
-
 		public override void SetDefaults()
 		{
 			Projectile.width = 100;
@@ -32,26 +30,28 @@ namespace TheSauce.Assets.Projectiles
 
         public override void AI()
         {
-			Projectile.ai[0] = (Projectile.ai[0]+1)%30;
 
+			float angle = (float)(2.0 * Math.PI * spawnRandomizer.NextDouble());
+			float angleCos = (float)Math.Cos(angle);
+			float angleSin = (float)Math.Sin(angle);
+
+			Vector2 spawnPosition = Projectile.Center;
+			spawnPosition.X = (float)(spawnPosition.X + (angleCos * radius * 0.6));
+			spawnPosition.Y = (float)(spawnPosition.Y + (angleSin * radius * 0.6));
+
+			Dust.NewDust(spawnPosition, Projectile.width, Projectile.height, ModContent.DustType<BlackHoleParticle>(), Projectile.velocity.X * 0.5f, Projectile.velocity.Y * 0.5f);
+
+			Projectile.ai[0] = (Projectile.ai[0] + 1) % 30;
 			if (Projectile.ai[0] == 0)
             {
-				float angle = (float)(2.0 * Math.PI * spawnRandomizer.NextDouble());
-
-				Console.WriteLine("spawnAngle: "+angle);
-				Console.WriteLine("\n");
-
-				float angleCos = (float)Math.Cos(angle);
-				float angleSin = (float)Math.Sin(angle);
 				float movementMultiplier = 5;
 
-				Vector2 spawnPosition = Projectile.Center;
-				Vector2 starMovement = new Vector2(-angleCos * movementMultiplier, -angleSin * movementMultiplier);
+				
+				//Vector2 starMovement = new Vector2(-angleCos * movementMultiplier, -angleSin * movementMultiplier);
 
-				spawnPosition.X = (float)(spawnPosition.X + (angleCos * radius));
-				spawnPosition.Y = (float)(spawnPosition.Y + (angleSin * radius));
+				
 
-				starMovement = Vector2.Zero;
+				Vector2 starMovement = Vector2.Zero;
 
 				Projectile.NewProjectile(Projectile.InheritSource(Projectile), spawnPosition, starMovement, ModContent.ProjectileType<BlackHoleStar>(), 5, 0, Projectile.owner, Projectile.Center.X, Projectile.Center.Y);
 			}
