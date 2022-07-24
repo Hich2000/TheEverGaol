@@ -29,7 +29,7 @@ namespace TheSauce.Assets.WeaponsMagic
 			Item.rare = ItemRarityID.Purple;
 			Item.UseSound = SoundID.Item20;
 			Item.autoReuse = true;
-			Item.shoot = ModContent.ProjectileType<SparklingBall>();
+			Item.shoot = ModContent.ProjectileType<Singularity>();
 			Item.shootSpeed = 17f;
 		}
 

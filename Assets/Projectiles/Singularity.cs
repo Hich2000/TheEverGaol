@@ -8,7 +8,7 @@ using System;
 
 namespace TheSauce.Assets.Projectiles
 {
-	public class SparklingBall : ModProjectile
+	public class Singularity : ModProjectile
 	{
 		public override void SetDefaults()
 		{
