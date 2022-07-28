@@ -1,11 +1,11 @@
-﻿using TheSauce.Assets.Dusts;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using System;
 using Terraria.ModLoader.Assets;
+using TheSauce.Assets.Dusts;
 
 namespace TheSauce.Assets.Projectiles
 {
@@ -13,6 +13,7 @@ namespace TheSauce.Assets.Projectiles
 	internal class BlackHoleStar : ModProjectile
 	{
 		public float spiralModifier = 1.0f;
+		public Color particleColor = new Color(70,0,255);
 
 		public override void SetDefaults()
 		{
@@ -23,10 +24,14 @@ namespace TheSauce.Assets.Projectiles
 			Projectile.timeLeft = 9999;
 			Projectile.tileCollide = false;
 			Projectile.light = 1f;
+			Projectile.damage = 200;
+			Projectile.DamageType = DamageClass.Magic;
 		}
 
         public override void AI()
         {
+			Projectile.rotation += 0.4f;
+
 			Vector2 blackHoleCenter = new Vector2(Projectile.ai[0], Projectile.ai[1]);
 			Vector2 starCenter = Projectile.Center;
 			//angle in radian
@@ -45,12 +50,7 @@ namespace TheSauce.Assets.Projectiles
             float newCenterY = (float)(blackHoleCenter.Y + (newAngleSin * modifiedDistance));
             Projectile.Center = new Vector2(newCenterX, newCenterY);
 
-
-            //Console.WriteLine("distanceToBlackHole: " + distanceToBlackHole);
-            //Console.WriteLine("\n");
-
-
-
+			Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<StarParticle>());
 
 			//check if star has entered the center of the black hole
 			bool xInRange = (starCenter.X <= Projectile.ai[0] + 20) && (starCenter.X >= Projectile.ai[0] - 20);
