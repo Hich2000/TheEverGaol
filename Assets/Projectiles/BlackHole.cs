@@ -29,7 +29,7 @@ namespace TheSauce.Assets.Projectiles
 			Projectile.height = 125;
 			Projectile.friendly = true;
 			Projectile.penetrate = int.MaxValue;
-			Projectile.timeLeft = 600;
+			Projectile.timeLeft = 800;
 			Projectile.ai[0] = 0;
 			Projectile.hide = true;
 			Projectile.tileCollide = false;
@@ -90,7 +90,6 @@ namespace TheSauce.Assets.Projectiles
 
 		public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI)
         {
-            //todo uncomment when I figure out the dust issue
             behindNPCs.Add(index);
             behindProjectiles.Add(index);
         }

@@ -16,7 +16,7 @@ namespace TheSauce.Assets.Projectiles
             Projectile.height = 125;
             Projectile.friendly = true;
             Projectile.penetrate = int.MaxValue;
-            Projectile.timeLeft = 600;
+            Projectile.timeLeft = 800;
             Projectile.damage = 0;
             Projectile.alpha = 200;
         }
