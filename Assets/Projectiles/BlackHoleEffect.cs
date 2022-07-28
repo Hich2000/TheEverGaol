@@ -19,6 +19,7 @@ namespace TheSauce.Assets.Projectiles
             Projectile.timeLeft = 800;
             Projectile.damage = 0;
             Projectile.alpha = 200;
+            Projectile.tileCollide = false;
         }
 
         public override void AI()
