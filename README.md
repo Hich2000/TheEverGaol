@@ -1,2 +1,3 @@
-# POCmod
-Proof of concept of potential terraria mod. Just a for fun thing.
+# The Ever Gaol mod
+
+Jsut a small terraria mod thing we're developing for fun.
